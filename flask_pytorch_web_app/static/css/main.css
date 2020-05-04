@@ -1,0 +1,135 @@
+body {
+  margin: 0px;
+  font-family: Verdana, Georgia, serif;
+  font-size: 14px;
+}
+
+/*
+ * Create a div with id=header
+ * */
+#header {
+  background-color: #3381cc;
+  margin: 10px;
+  height: 90px;
+  border-radius: 5px;
+  color: white;
+}
+
+/*
+ * Create a div with id=navbar
+ * */
+#navbar ul {
+  padding: 5px;
+  background-color: #3381cc;
+  text-align: center;
+  list-style-type: none;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+#navbar ul li {
+  display: inline;
+}
+
+#navbar ul li a {
+  text-decoration: none;
+  font-family: Arial;
+  padding: .2em 1em;
+  color: #fff;
+  text-align: center;
+}
+
+#navbar ul li a:hover {
+  color: #CC7E33;
+  background-color: #fff; 
+}
+
+/*
+ * Create a div with class=main
+ * */
+.main {
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 100%;
+}
+
+h1 {
+  font-size: 120%;
+  color: red; 
+}
+
+#container {
+  margin-left: auto;
+  margin-right: auto;
+  border-color: red;
+  border-radius: 5px;
+}
+
+#prediction{
+  width: 700px;
+  height: auto;
+  margin-left: 500px;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#alert {
+  color: red;
+  margin-left: 380px;
+  margin-right: auto;
+  padding: None;
+  border: None;
+}
+
+/*
+ * Create a div with class=main
+ * */
+
+#footer{
+  background-color: #3381cc;
+  margin: 10px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+#blockButton, #form{
+  margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  color: white;
+  border: none;
+  background-color: #CC7E33;
+  padding: 14px 28px;
+  font-size: 120%;
+  font-weight: bolder;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+
+h3 {
+  font-size: 250%;
+  text-align: center;
+  color: #e5e4d7;
+  font-family: "century Gothic", "Gill Sans", Arial;
+
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#logo, #inputImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 5px;
+}
+

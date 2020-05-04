@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+
+  <title> Predict Image</title>
+
+{% endblock %}
+
+{% block body %} 
+      {% if obj.is_image_display %}
+        {% if obj.is_predicted %}
+          <div id="prediction"> 
+            <h1> Image has : {{ obj.value }}!! </h1> 
+          </div>
+        {% else %}
+          <div>
+            <form method=POST enctype=multipart/form-data action="{{ url_for('prediction', filename=obj.image) }}">
+              <input type="submit" value="Classify Image" id="blockButton">
+            </form>
+          </div> 
+        {% endif %}
+        <div > 
+          <img id="inputImage" src={{ url_for('send_file', filename=obj.image) }} alt="User Image">
+        </div>
+      {% endif %}
+{% endblock %}
+
