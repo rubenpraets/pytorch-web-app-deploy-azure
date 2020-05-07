@@ -10,7 +10,7 @@
       {% if obj.is_image_display %}
         {% if obj.is_predicted %}
           <div id="prediction"> 
-            <h1> Image has : {{ obj.value }}!! </h1> 
+            <h1> Classification Result: {{ obj.value }} </h1> 
           </div>
         {% else %}
           <div>
