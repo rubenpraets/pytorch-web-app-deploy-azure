@@ -1,8 +1,17 @@
-# Setup:
+# Initial build setup
+
+Let us have a separate virtual environment for our development.
 
 ```sh
-pip install wheel
-python setup.py bdist_wheel
-cd dist
-pip install --no-cache-dir flask_pytorch_web_app-0.0.0-py3-none-any.whl
+$ sudo apt install python3-venv
+$ python3 -m venv webappenv
+$ source ./webapp/bin/activate
+```
+
+Clone the repo and install the dependencies.
+
+```sh
+$ git clone https://github.com/bigvisionai/pytorch-web-app-deploy-azure
+$ cd pytorch-web-app-deploy-azure
+$ pip install -r requirements.txt
 ```
