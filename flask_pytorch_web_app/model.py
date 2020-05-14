@@ -16,22 +16,29 @@ def transform_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes))
     return my_transforms(image).unsqueeze(0)
 
+def supported_image_type(img):
+    image = Image.open(img)
+    return image.mode == 'RGB'
 
 def predict(image_file, class_file):
-    class_file = getcwd() + '/flask_pytorch_web_app/' + class_file
-    # Make sure to pass `pretrained` as `True` to use the pretrained weights:
-    model = models.densenet121(pretrained=True)
-    # Since we are using our model only for inference, switch to `eval` mode:
-    model.eval()
+    try:
+        class_file = getcwd() + '/flask_pytorch_web_app/' + class_file
+        # Make sure to pass `pretrained` as `True` to use the pretrained weights:
+        model = models.densenet121(pretrained=True)
+        # Since we are using our model only for inference, switch to `eval` mode:
+        model.eval()
 
-    imagenet_class_index = json.load(open(class_file))
-    with open(image_file, 'rb') as f:
-        image_bytes = f.read()
-        tensor = transform_image(image_bytes=image_bytes)
-        outputs = model.forward(tensor)
-        _, y_hat = outputs.max(1)
-        predicted_idx = str(y_hat.item())
-    return imagenet_class_index[predicted_idx]
+        imagenet_class_index = json.load(open(class_file))
+        with open(image_file, 'rb') as f:
+            image_bytes = f.read()
+            tensor = transform_image(image_bytes=image_bytes)
+            outputs = model.forward(tensor)
+            _, y_hat = outputs.max(1)
+            predicted_idx = str(y_hat.item())
+        return imagenet_class_index[predicted_idx]
+    except:
+        print(f"Something went wrong with the model. May be image format is not supported")
+        return []
 
 #testing
 def test():

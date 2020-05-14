@@ -1,6 +1,6 @@
 from flask import render_template, request, send_from_directory, flash, url_for
 from flask import current_app as app
-from .model import predict
+from .model import predict, supported_image_type
 from . import photos
 
 
@@ -35,15 +35,18 @@ def prediction(filename):
         val = app.config['UPLOADED_PHOTOS_DEST']+filename
         obj.image = filename
         jf = url_for('static', filename='data/imagenet_class_index.json')
-        p = predict(val, jf)
-        if len(p) == 2:
-            obj.is_image_display = True
-            obj.is_predicted = True
-            obj.value = cleanString(p[1])
+        if supported_image_type(val):
+            p = predict(val, jf)
+            if len(p) == 2:
+                obj.is_image_display = True
+                obj.is_predicted = True
+                obj.value = cleanString(p[1])
+                return render_template('/predict.html', obj=obj)
+            else:
+                flash(f'Something went wrong with prediction. Try a different image')
             return render_template('/predict.html', obj=obj)
         else:
-            flash(f'Something went wrong with prediction. Try a different image')
-            return render_template('/predict.html', obj=obj)
+            flash(f'Uploaded image is not supported by our model. Try a different image')
     return render_template('/upload.html', obj=obj)
 
 
