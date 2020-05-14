@@ -17,8 +17,11 @@ def transform_image(image_bytes):
     return my_transforms(image).unsqueeze(0)
 
 def supported_image_type(img):
-    image = Image.open(img)
-    return image.mode == 'RGB'
+    try:
+        image = Image.open(img)
+        return image.mode == 'RGB'
+    except:
+        return False
 
 def predict(image_file, class_file):
     try:
