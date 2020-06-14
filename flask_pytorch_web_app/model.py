@@ -5,6 +5,11 @@ import torchvision.transforms as transforms
 from torchvision import models
 from PIL import Image
 
+# Make sure to pass `pretrained` as `True` to use the pretrained weights:
+model = models.densenet121(pretrained=True)
+# Since we are using our model only for inference, switch to `eval` mode:
+model.eval()
+
 
 def transform_image(image_bytes):
     my_transforms = transforms.Compose([transforms.Resize(255),
@@ -26,11 +31,6 @@ def supported_image_type(img):
 def predict(image_file, class_file):
     try:
         class_file = getcwd() + '/flask_pytorch_web_app/' + class_file
-        # Make sure to pass `pretrained` as `True` to use the pretrained weights:
-        model = models.densenet121(pretrained=True)
-        # Since we are using our model only for inference, switch to `eval` mode:
-        model.eval()
-
         imagenet_class_index = json.load(open(class_file))
         with open(image_file, 'rb') as f:
             image_bytes = f.read()
@@ -50,3 +50,4 @@ def test():
 
     p = predict(img, cf)
     print(f'Given image is: {p[1]}')
+
